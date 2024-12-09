@@ -85,7 +85,7 @@ production:
   primary: &primary_production
     <<: *default
     database: primegap_production
-    username: primegap_admin
+    username: primegap
     password: <%= ENV["PRIMEGAP_DATABASE_PASSWORD"] %>
   cache:
     <<: *primary_production
