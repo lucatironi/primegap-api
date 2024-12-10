@@ -47,8 +47,12 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  # Fixtures replacement with a straightforward definition syntax
+  gem "factory_bot_rails"
 end
 
 group :test do
+  gem "rspec-rails"
   gem "shoulda"
 end
