@@ -25,7 +25,7 @@ module Authentication
         aud: "primegap-api-client",
         sub: "User",
         jti: SecureRandom.uuid,
-        nbf: now + 1.second.to_i,
+        nbf: now + 1.second.to_i
       },
       Rails.application.credentials.jwt_secret,
       "HS256",
