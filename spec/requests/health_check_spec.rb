@@ -4,6 +4,6 @@ RSpec.describe "health_check", type: :request do
   describe "GET health status" do
     before { get "/up" }
 
-    it { expect(response.status).to eq(200) }
+    it { expect(response).to have_http_status(:ok) }
   end
 end

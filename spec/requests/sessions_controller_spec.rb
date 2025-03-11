@@ -21,14 +21,14 @@ RSpec.describe SessionsController, type: :request do
     context "with valid credentials" do
       before { post "/sessions", params: valid_params }
 
-      it { expect(response.status).to eq(200) }
+      it { expect(response).to have_http_status(:ok) }
       it { expect(parsed_response).to eq("token" => "jwt-secret-token") }
     end
 
     context "with invalid credentials" do
       before { post "/sessions", params: invalid_params }
 
-      it { expect(response.status).to eq(401) }
+      it { expect(response).to have_http_status(:unauthorized) }
       it { expect(parsed_response).to eq("error" => "Invalid email or password") }
     end
   end
