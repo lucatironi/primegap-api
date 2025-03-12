@@ -6,6 +6,6 @@ module RequestSpecHelper
   def login_user_and_get_token(email_address, password)
     post "/sessions", params: { email_address: email_address, password: password }
     sleep 1.seconds
-    return parsed_json["token"]
+    parsed_json["token"]
   end
 end
