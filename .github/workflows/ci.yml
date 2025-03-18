@@ -68,6 +68,8 @@ jobs:
         with:
           ruby-version: .ruby-version
           bundler-cache: true
+      - name: Set Rails credentials
+        run: echo "${{ secrets.RAILS_MASTER_KEY }}" > config/master.key
 
       - name: Run rspec tests
         env:
