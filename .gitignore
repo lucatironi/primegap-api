@@ -32,4 +32,3 @@
 /config/master.key
 
 .DS_Store
-/config/credentials/test.key
