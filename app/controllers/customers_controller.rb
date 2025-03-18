@@ -2,7 +2,8 @@ class CustomersController < ApplicationController
   before_action :set_customer, only: [ :show, :update, :destroy ]
 
   def index
-    @customers = Customer.all
+    authorize Customer
+    @customers = policy_scope(Customer)
 
     render json: @customers
   end
@@ -39,6 +40,7 @@ private
 
   def set_customer
     @customer = Customer.find(params[:id])
+    authorize @customer
   end
 
   def customer_params

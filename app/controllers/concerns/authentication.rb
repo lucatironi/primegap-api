@@ -17,6 +17,7 @@ module Authentication
       {
         data: {
           id: payload.id,
+          company_id: payload.company_id,
           email_address: payload.email_address
         },
         exp: now + 3.minutes.to_i,

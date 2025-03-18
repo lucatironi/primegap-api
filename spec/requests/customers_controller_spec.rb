@@ -1,7 +1,8 @@
 require "rails_helper"
 
 RSpec.describe CustomersController, type: :request do
-  let!(:user) { User.create(email_address: "user@example.com", password: "password") }
+  let!(:user) { User.create(email_address: "user@example.com", password: "password", company_id: 1) }
+
   let(:jwt_token) { login_user_and_get_token(user.email_address, "password") }
   let(:headers) { { "Authorization" => "Bearer #{jwt_token}" } }
 
