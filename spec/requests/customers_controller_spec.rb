@@ -71,7 +71,7 @@ RSpec.describe CustomersController, type: :request do
       post "/customers", headers: headers, params: { customer: invalid_attributes }
 
       expect(response).to have_http_status(422)
-      expect(parsed_json).to eq("full_name" => ["can't be blank"])
+      expect(parsed_json).to eq("full_name" => [ "can't be blank" ])
     end
   end
 
@@ -92,7 +92,7 @@ RSpec.describe CustomersController, type: :request do
       patch "/customers/#{customer.id}", headers: headers, params: { customer: { full_name: nil } }
 
       expect(response).to have_http_status(422)
-      expect(parsed_json).to eq("full_name" => ["can't be blank"])
+      expect(parsed_json).to eq("full_name" => [ "can't be blank" ])
     end
   end
 
