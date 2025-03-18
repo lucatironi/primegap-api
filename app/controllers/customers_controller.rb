@@ -15,7 +15,7 @@ class CustomersController < ApplicationController
     render json: @customers
   end
 
-  private
+private
 
   def customer_params
     params.require(:customer).permit(:full_name, :email, :phone, :company_id)

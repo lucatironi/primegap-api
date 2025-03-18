@@ -41,6 +41,7 @@ module Authentication
   end
 
 private
+
   def get_token
     request.headers["Authorization"].split(" ").last
   end
