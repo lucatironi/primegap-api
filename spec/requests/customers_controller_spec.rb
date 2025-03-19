@@ -95,6 +95,13 @@ RSpec.describe CustomersController, type: :request do
       expect(response).to have_http_status(422)
       expect(parsed_json).to eq("full_name" => [ "can't be blank" ])
     end
+
+    scenario "with non existing customer" do
+      patch "/customers/not-an-id", headers: headers, params: { customer: { full_name: "John F. Doe", email: "john.f.doe@example.com" } }
+
+      expect(response).to have_http_status(404)
+      expect(parsed_json).to be_blank
+    end
   end
 
 
@@ -104,6 +111,13 @@ RSpec.describe CustomersController, type: :request do
 
       expect(response).to have_http_status(204)
       expect { Customer.find(customer.id) }.to raise_exception(ActiveRecord::RecordNotFound)
+    end
+
+    scenario "with non existing customer" do
+      delete "/customers/not-an-id", headers: headers
+
+      expect(response).to have_http_status(404)
+      expect(parsed_json).to be_blank
     end
   end
 end
