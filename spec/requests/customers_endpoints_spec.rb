@@ -20,7 +20,7 @@ RSpec.describe CustomersController, type: :request do
   let!(:customer) { Customer.create(valid_attributes) }
 
   describe "GET #index" do
-    it "assigns all customers as @customers" do
+    it "returns all the customers" do
       get "/customers", headers: headers
 
       expect(response).to have_http_status(200)
