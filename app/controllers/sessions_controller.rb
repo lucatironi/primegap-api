@@ -10,6 +10,9 @@ class SessionsController < ApplicationController
 
     if @current_user && @current_user.authenticate(params[:password])
       encoded_token = encode(@current_user)
+      @current_user.sessions.create!(
+        ip_address:   request.remote_ip,
+        user_agent:   request.user_agent)
 
       render json: { token: encoded_token }, status: :ok
     else

@@ -16,18 +16,24 @@ RSpec.describe SessionsController, type: :request do
   end
 
   describe "POST #create" do
-    context "with valid credentials" do
-      before { post "/sessions", params: valid_params }
+    scenario "with valid credentials" do
+      post "/sessions", params: valid_params
 
-      it { expect(response).to have_http_status(:ok) }
-      it { expect(parsed_json).to eq("token" => "jwt-secret-token") }
+      expect(response).to have_http_status(:ok)
+      expect(parsed_json).to eq("token" => "jwt-secret-token")
     end
 
-    context "with invalid credentials" do
-      before { post "/sessions", params: invalid_params }
+    it "creates a new session for user" do
+      expect do
+        post "/sessions", params: valid_params
+      end.to change(user.sessions, :count).by(1)
+    end
 
-      it { expect(response).to have_http_status(:unauthorized) }
-      it { expect(parsed_json).to eq("error" => "Invalid email or password") }
+    scenario "with invalid credentials" do
+      post "/sessions", params: invalid_params
+
+      expect(response).to have_http_status(:unauthorized)
+      expect(parsed_json).to eq("error" => "Invalid email or password")
     end
   end
 end
