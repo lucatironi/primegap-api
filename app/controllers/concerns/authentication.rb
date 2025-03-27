@@ -37,19 +37,20 @@ module Authentication
   end
 
   def decode
-    token = get_token
-    JWT.decode(token, Rails.application.credentials.jwt_secret, "HS256")
+    token = get_token_from_header
+    JWT.decode(token, Rails.application.credentials.jwt_secret, "HS256") if token
   end
 
 private
 
-  def get_token
-    request.headers["Authorization"].split(" ").last
+  def get_token_from_header
+    header = request.headers["Authorization"]
+    request.header.split(" ").last if header
   end
 
   def current_user
     decoded = decode
-    decoded.first["data"].with_indifferent_access
+    decoded.first["data"].with_indifferent_access if decoded
   end
 
   def authenticate
