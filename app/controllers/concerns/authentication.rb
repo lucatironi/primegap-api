@@ -45,7 +45,7 @@ private
 
   def get_token_from_header
     header = request.headers["Authorization"]
-    request.header.split(" ").last if header
+    header.split(" ").last if header
   end
 
   def current_user
